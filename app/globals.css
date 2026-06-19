@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+html,
+body {
+  background: theme(colors.canvas);
+  color: theme(colors.ink);
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+}
+
+/* thin scrollbars to match the airy look */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #d7dbe3;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
