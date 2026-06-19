@@ -1,13 +1,14 @@
 import { Card } from "@/components/ui";
 import { RefreshCw } from "lucide-react";
+import { compact } from "@/lib/data";
 
 const devices = [
-  { name: "GATE-A1", loc: "Main Entrance", model: "Hikvision DS-K1T671", status: "ok", scans: "2,140", uptime: 99, fw: "v4.2.1" },
-  { name: "GATE-A2", loc: "North Entrance", model: "Hikvision DS-K1T671", status: "ok", scans: "1,802", uptime: 98, fw: "v4.2.1" },
-  { name: "DOOR-B3", loc: "Warehouse Floor", model: "Hikvision DS-K1T343", status: "ok", scans: "3,011", uptime: 97, fw: "v4.1.9" },
-  { name: "VAULT-1", loc: "Secure Vault", model: "Hikvision DS-K1T673", status: "ok", scans: "412", uptime: 100, fw: "v4.2.1" },
-  { name: "DOOR-C1", loc: "Loading Bay", model: "Hikvision DS-K1T343", status: "warn", scans: "988", uptime: 71, fw: "v4.0.3" },
-  { name: "GATE-D5", loc: "Staff Parking", model: "Hikvision DS-K1T671", status: "off", scans: "0", uptime: 0, fw: "v4.0.3" },
+  { name: "GATE-A1", loc: "Main Entrance", model: "Hikvision DS-K1T671", status: "ok", scans: 2140, uptime: 99, fw: "v4.2.1" },
+  { name: "GATE-A2", loc: "North Entrance", model: "Hikvision DS-K1T671", status: "ok", scans: 1802, uptime: 98, fw: "v4.2.1" },
+  { name: "DOOR-B3", loc: "Warehouse Floor", model: "Hikvision DS-K1T343", status: "ok", scans: 3011, uptime: 97, fw: "v4.1.9" },
+  { name: "VAULT-1", loc: "Secure Vault", model: "Hikvision DS-K1T673", status: "ok", scans: 412, uptime: 100, fw: "v4.2.1" },
+  { name: "DOOR-C1", loc: "Loading Bay", model: "Hikvision DS-K1T343", status: "warn", scans: 988, uptime: 71, fw: "v4.0.3" },
+  { name: "GATE-D5", loc: "Staff Parking", model: "Hikvision DS-K1T671", status: "off", scans: 0, uptime: 0, fw: "v4.0.3" },
 ];
 
 const dot: Record<string, string> = {
@@ -56,7 +57,7 @@ export default function DevicesPage() {
 
             <div className="mt-4 flex items-center justify-between text-sm">
               <span className="text-muted">Scans (24h)</span>
-              <span className="font-semibold text-ink">{d.scans}</span>
+              <span className="font-semibold text-ink">{compact(d.scans)}</span>
             </div>
             <div className="mt-1 flex items-center justify-between text-sm">
               <span className="text-muted">Firmware</span>

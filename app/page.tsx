@@ -127,7 +127,7 @@ export default function Dashboard() {
             <DotMatrix rows={6} cols={14} values={fill(84, 1.3)} />
           </div>
           <div className="text-xs text-muted">Hours verified</div>
-          <div className="text-2xl font-bold text-ink">3,184 h</div>
+          <div className="text-2xl font-bold text-ink">3.2k h</div>
         </Card>
 
         {/* Total disbursed dot matrix */}
@@ -144,7 +144,7 @@ export default function Dashboard() {
             <DotMatrix rows={6} cols={14} values={fill(84, 2.1)} />
           </div>
           <div className="text-xs text-muted">Total disbursed</div>
-          <div className="text-2xl font-bold text-ink">$128,450</div>
+          <div className="text-2xl font-bold text-ink">UGX 128.5m</div>
         </Card>
 
         {/* Lock + growth stack */}
@@ -212,7 +212,7 @@ export default function Dashboard() {
               <MiniCandles data={candles} />
             </div>
             <div className="mt-4">
-              <div className="text-2xl font-bold text-ink">$16,073</div>
+              <div className="text-2xl font-bold text-ink">UGX 16.1m</div>
               <div className="text-xs text-muted">Labor cost · this period</div>
             </div>
           </Card>

@@ -1,4 +1,5 @@
 import { Avatar, Badge, Card, CardHead } from "@/components/ui";
+import ExportButton from "@/components/ExportButton";
 import { DollarSign } from "lucide-react";
 import {
   OVERTIME_MULTIPLIER,
@@ -34,9 +35,28 @@ export default function PayoutsPage() {
             {OVERTIME_MULTIPLIER})
           </p>
         </div>
-        <button className="rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white shadow-sm">
-          Run payout batch
-        </button>
+        <div className="flex items-center gap-3">
+          <ExportButton
+            rows={payouts.map((p) => {
+              const emp = employeeById(p.employeeId)!;
+              return {
+                ref: p.ref,
+                employee: emp.name,
+                employeeId: p.employeeId,
+                period: p.period,
+                regularHours: p.regularHours,
+                overtimeHours: p.overtimeHours,
+                grossUGX: p.gross,
+                status: p.status,
+              };
+            })}
+            filename="payout-batch.csv"
+            label="Export batch"
+          />
+          <button className="rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white shadow-sm">
+            Run payout batch
+          </button>
+        </div>
       </div>
 
       <div className="grid grid-cols-2 gap-5 lg:grid-cols-4">

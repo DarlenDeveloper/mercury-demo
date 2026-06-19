@@ -13,6 +13,8 @@ import {
   Users,
   Search,
   HelpCircle,
+  ShieldCheck,
+  Mail,
   type LucideIcon,
 } from "lucide-react";
 import { Avatar } from "./ui";
@@ -36,6 +38,10 @@ const groups: {
       { href: "/payouts", label: "Payouts", icon: DollarSign },
       { href: "/employees", label: "Employees", icon: Users },
     ],
+  },
+  {
+    label: "System",
+    items: [{ href: "/audit", label: "Audit Log", icon: ShieldCheck }],
   },
 ];
 
@@ -107,15 +113,20 @@ export default function AppShell({ children }: { children: ReactNode }) {
           ))}
         </nav>
 
-        {/* Promo card */}
+        {/* Contact developer */}
         <div className="mt-4 overflow-hidden rounded-xl2 bg-gradient-to-br from-navy to-slate2 p-4 text-white">
-          <div className="text-sm font-semibold">Go Pro</div>
+          <div className="flex items-center gap-2 text-sm font-semibold">
+            <Mail size={15} className="text-accent" /> Contact developer
+          </div>
           <p className="mt-1 text-xs text-white/70">
-            Multi-site sync, payroll exports, and audit retention.
+            Found a bug or need a new feature? Reach the dev team.
           </p>
-          <button className="mt-3 w-full rounded-full bg-accent px-3 py-2 text-xs font-semibold text-white">
-            Upgrade workspace
-          </button>
+          <a
+            href="mailto:dev@mercury.co.ug?subject=Mercury%20Biometrics%20support"
+            className="mt-3 block rounded-full bg-accent px-3 py-2 text-center text-xs font-semibold text-white"
+          >
+            dev@mercury.co.ug
+          </a>
         </div>
       </aside>
 

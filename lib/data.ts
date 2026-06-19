@@ -1,6 +1,7 @@
 import {
   AccessLog,
   AttendanceRecord,
+  AuditEntry,
   Employee,
   Payout,
 } from "./types";
@@ -9,14 +10,14 @@ export const STANDARD_DAY_HOURS = 8;
 export const OVERTIME_MULTIPLIER = 1.5;
 
 export const employees: Employee[] = [
-  { id: "EMP-1042", name: "Dana Whitfield", role: "Shift Lead", department: "Operations", hourlyRate: 28, status: "active", enrolled: ["face", "finger", "card"], avatarColor: "#1f5fd9" },
-  { id: "EMP-0871", name: "Marcus Lendt", role: "Forklift Operator", department: "Logistics", hourlyRate: 22, status: "active", enrolled: ["finger", "card"], avatarColor: "#2f3c52" },
-  { id: "EMP-2210", name: "Priya Anand", role: "Accountant", department: "Finance", hourlyRate: 34, status: "active", enrolled: ["face", "finger"], avatarColor: "#e0913a" },
-  { id: "EMP-1567", name: "Tomas Reyes", role: "Picker", department: "Operations", hourlyRate: 20, status: "active", enrolled: ["face"], avatarColor: "#3b7d6e" },
-  { id: "EMP-0334", name: "Aisha Bello", role: "Security Officer", department: "Security", hourlyRate: 26, status: "active", enrolled: ["face", "finger", "card"], avatarColor: "#7b5ea7" },
-  { id: "EMP-1281", name: "Kofi Mensah", role: "Driver", department: "Logistics", hourlyRate: 24, status: "on_leave", enrolled: ["finger"], avatarColor: "#c0573f" },
-  { id: "EMP-1903", name: "Leo Nakamura", role: "Supervisor", department: "Operations", hourlyRate: 30, status: "active", enrolled: ["face", "card"], avatarColor: "#3f6fb0" },
-  { id: "EMP-0708", name: "Sara Ortiz", role: "QA Inspector", department: "Quality", hourlyRate: 27, status: "active", enrolled: ["face", "finger"], avatarColor: "#b07b3f" },
+  { id: "EMP-1042", name: "Dana Whitfield", role: "Shift Lead", department: "Operations", hourlyRate: 12000, status: "active", enrolled: ["face", "finger", "card"], avatarColor: "#1f5fd9" },
+  { id: "EMP-0871", name: "Marcus Lendt", role: "Forklift Operator", department: "Logistics", hourlyRate: 8000, status: "active", enrolled: ["finger", "card"], avatarColor: "#2f3c52" },
+  { id: "EMP-2210", name: "Priya Anand", role: "Accountant", department: "Finance", hourlyRate: 15000, status: "active", enrolled: ["face", "finger"], avatarColor: "#e0913a" },
+  { id: "EMP-1567", name: "Tomas Reyes", role: "Picker", department: "Operations", hourlyRate: 6000, status: "active", enrolled: ["face"], avatarColor: "#3b7d6e" },
+  { id: "EMP-0334", name: "Aisha Bello", role: "Security Officer", department: "Security", hourlyRate: 9000, status: "active", enrolled: ["face", "finger", "card"], avatarColor: "#7b5ea7" },
+  { id: "EMP-1281", name: "Kofi Mensah", role: "Driver", department: "Logistics", hourlyRate: 8500, status: "on_leave", enrolled: ["finger"], avatarColor: "#c0573f" },
+  { id: "EMP-1903", name: "Leo Nakamura", role: "Supervisor", department: "Operations", hourlyRate: 13000, status: "active", enrolled: ["face", "card"], avatarColor: "#3f6fb0" },
+  { id: "EMP-0708", name: "Sara Ortiz", role: "QA Inspector", department: "Quality", hourlyRate: 10000, status: "active", enrolled: ["face", "finger"], avatarColor: "#b07b3f" },
 ];
 
 export const attendanceToday: AttendanceRecord[] = [
@@ -111,5 +112,29 @@ export const payouts: Payout[] = payoutSeed.map((p) => {
   return { ...p, gross: Math.round(gross) };
 });
 
-export const currency = (n: number) =>
-  new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(n);
+// Compact number formatting: 200k, 1.2m, 1.2b
+export const compact = (n: number): string => {
+  const abs = Math.abs(n);
+  const fmt = (v: number, suffix: string) =>
+    `${(v % 1 === 0 ? v.toFixed(0) : v.toFixed(1))}${suffix}`;
+  if (abs >= 1e9) return fmt(n / 1e9, "b");
+  if (abs >= 1e6) return fmt(n / 1e6, "m");
+  if (abs >= 1e3) return fmt(n / 1e3, "k");
+  return String(Math.round(n));
+};
+
+export const currency = (n: number) => `UGX ${compact(n)}`;
+
+// --- Audit log (formerly a "pro" feature) ---
+export const auditLog: AuditEntry[] = [
+  { id: "AU-5512", timestamp: "Jun 19, 2026 · 14:32", actor: "A. Kessler", actorRole: "Security Admin", category: "payout", action: "Approved payout", target: "PO-93021 · Dana Whitfield", ip: "10.0.4.21" },
+  { id: "AU-5511", timestamp: "Jun 19, 2026 · 14:18", actor: "System", actorRole: "Automation", category: "auth", action: "Flagged low-confidence match", target: "GATE-A1 · 41% face", ip: "10.0.4.10" },
+  { id: "AU-5510", timestamp: "Jun 19, 2026 · 13:55", actor: "R. Osei", actorRole: "Payroll", category: "export", action: "Exported payout batch (CSV)", target: "Period Jun 1–15", ip: "10.0.4.33" },
+  { id: "AU-5509", timestamp: "Jun 19, 2026 · 13:40", actor: "A. Kessler", actorRole: "Security Admin", category: "enrollment", action: "Enrolled fingerprint template", target: "EMP-1567 · Tomas Reyes", ip: "10.0.4.21" },
+  { id: "AU-5508", timestamp: "Jun 19, 2026 · 12:12", actor: "A. Kessler", actorRole: "Security Admin", category: "device", action: "Updated firmware", target: "DOOR-B3 → v4.1.9", ip: "10.0.4.21" },
+  { id: "AU-5507", timestamp: "Jun 19, 2026 · 11:47", actor: "R. Osei", actorRole: "Payroll", category: "payout", action: "Flagged hours mismatch", target: "PO-93026 · Leo Nakamura", ip: "10.0.4.33" },
+  { id: "AU-5506", timestamp: "Jun 19, 2026 · 10:30", actor: "System", actorRole: "Automation", category: "settings", action: "Auto-disburse rule ran", target: "2 approved payouts queued", ip: "10.0.4.10" },
+  { id: "AU-5505", timestamp: "Jun 19, 2026 · 09:05", actor: "M. Diallo", actorRole: "Operations", category: "device", action: "Marked device offline", target: "GATE-D5 · Staff Parking", ip: "10.0.4.52" },
+  { id: "AU-5504", timestamp: "Jun 18, 2026 · 17:22", actor: "A. Kessler", actorRole: "Security Admin", category: "export", action: "Exported access logs (CSV)", target: "Last 24h · 9,734 events", ip: "10.0.4.21" },
+  { id: "AU-5503", timestamp: "Jun 18, 2026 · 16:09", actor: "R. Osei", actorRole: "Payroll", category: "settings", action: "Changed overtime multiplier", target: "1.5× → applied next period", ip: "10.0.4.33" },
+];

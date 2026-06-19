@@ -45,3 +45,16 @@ export type Payout = {
   gross: number;
   status: PayoutStatus;
 };
+
+export type AuditCategory = "auth" | "payout" | "enrollment" | "device" | "export" | "settings";
+
+export type AuditEntry = {
+  id: string;
+  timestamp: string; // ISO-ish display string
+  actor: string;
+  actorRole: string;
+  category: AuditCategory;
+  action: string;
+  target: string;
+  ip: string;
+};
