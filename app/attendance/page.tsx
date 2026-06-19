@@ -1,4 +1,5 @@
 import { Avatar, Badge, Card, CardHead } from "@/components/ui";
+import { Clock } from "lucide-react";
 import {
   attendanceToday,
   computeDailyPay,
@@ -35,9 +36,11 @@ export default function AttendancePage() {
             Today · Fri Jun 19, 2026 — biometric check-in / check-out feed
           </p>
         </div>
-        <Badge tone="green">● Live</Badge>
+        <Badge tone="green">
+          <span className="mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-emerald-500 align-middle" />
+          Live
+        </Badge>
       </div>
-
       <div className="grid grid-cols-2 gap-5 lg:grid-cols-4">
         {[
           { label: "On site now", value: onSite, tone: "blue" as const },
@@ -55,7 +58,7 @@ export default function AttendancePage() {
       <Card>
         <CardHead
           title="Time & Pay — Today"
-          icon={<span>◷</span>}
+          icon={<Clock size={15} />}
           subtitle="Worked hours and accrued pay are computed from verified scan times"
         />
         <div className="overflow-x-auto px-2 pb-2 pt-3">

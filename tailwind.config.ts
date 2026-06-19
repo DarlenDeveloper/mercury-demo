@@ -14,8 +14,8 @@ const config: Config = {
         muted: "#8b93a4",
         line: "#eceef2",
         accent: {
-          DEFAULT: "#f4732a",
-          soft: "#fff1e9",
+          DEFAULT: "#1f5fd9",
+          soft: "#eaf1fe",
         },
         navy: "#1f2a3c",
         slate2: "#2f3c52",

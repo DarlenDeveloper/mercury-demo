@@ -9,7 +9,7 @@ export const STANDARD_DAY_HOURS = 8;
 export const OVERTIME_MULTIPLIER = 1.5;
 
 export const employees: Employee[] = [
-  { id: "EMP-1042", name: "Dana Whitfield", role: "Shift Lead", department: "Operations", hourlyRate: 28, status: "active", enrolled: ["face", "finger", "card"], avatarColor: "#f4732a" },
+  { id: "EMP-1042", name: "Dana Whitfield", role: "Shift Lead", department: "Operations", hourlyRate: 28, status: "active", enrolled: ["face", "finger", "card"], avatarColor: "#1f5fd9" },
   { id: "EMP-0871", name: "Marcus Lendt", role: "Forklift Operator", department: "Logistics", hourlyRate: 22, status: "active", enrolled: ["finger", "card"], avatarColor: "#2f3c52" },
   { id: "EMP-2210", name: "Priya Anand", role: "Accountant", department: "Finance", hourlyRate: 34, status: "active", enrolled: ["face", "finger"], avatarColor: "#e0913a" },
   { id: "EMP-1567", name: "Tomas Reyes", role: "Picker", department: "Operations", hourlyRate: 20, status: "active", enrolled: ["face"], avatarColor: "#3b7d6e" },

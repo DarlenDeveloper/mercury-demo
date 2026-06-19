@@ -1,4 +1,5 @@
 import { Avatar, Badge, Card, CardHead } from "@/components/ui";
+import { Download, ScrollText } from "lucide-react";
 import { accessLogs, employeeById } from "@/lib/data";
 
 const resultTone: Record<string, "green" | "red" | "amber"> = {
@@ -22,8 +23,8 @@ export default function LogsPage() {
             Every authentication attempt, with match confidence
           </p>
         </div>
-        <button className="rounded-full border border-line bg-card px-4 py-2 text-sm font-medium text-ink">
-          ⬇ Export CSV
+        <button className="flex items-center gap-2 rounded-full border border-line bg-card px-4 py-2 text-sm font-medium text-ink">
+          <Download size={15} /> Export CSV
         </button>
       </div>
 
@@ -43,7 +44,7 @@ export default function LogsPage() {
       </div>
 
       <Card>
-        <CardHead title="Event Stream" icon={<span>≣</span>} />
+        <CardHead title="Event Stream" icon={<ScrollText size={15} />} />
         <div className="overflow-x-auto px-2 pb-2 pt-3">
           <table className="w-full">
             <thead>

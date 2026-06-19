@@ -1,4 +1,5 @@
 import { Avatar, Badge, Card, CardHead } from "@/components/ui";
+import { UserPlus, Users } from "lucide-react";
 import { currency, employees } from "@/lib/data";
 
 const statusTone: Record<string, "green" | "amber" | "slate"> = {
@@ -27,13 +28,13 @@ export default function EmployeesPage() {
             {employees.length} enrolled identities and their biometric templates
           </p>
         </div>
-        <button className="rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white shadow-sm">
-          ＋ Enroll employee
+        <button className="flex items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white shadow-sm">
+          <UserPlus size={16} /> Enroll employee
         </button>
       </div>
 
       <Card>
-        <CardHead title="Directory" icon={<span>☺</span>} />
+        <CardHead title="Directory" icon={<Users size={15} />} />
         <div className="overflow-x-auto px-2 pb-2 pt-3">
           <table className="w-full">
             <thead>

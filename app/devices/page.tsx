@@ -1,4 +1,5 @@
 import { Card } from "@/components/ui";
+import { RefreshCw } from "lucide-react";
 
 const devices = [
   { name: "GATE-A1", loc: "Main Entrance", model: "Hikvision DS-K1T671", status: "ok", scans: "2,140", uptime: 99, fw: "v4.2.1" },
@@ -30,8 +31,8 @@ export default function DevicesPage() {
             Biometric terminals and gateway health
           </p>
         </div>
-        <button className="rounded-full border border-line bg-card px-4 py-2 text-sm font-medium text-ink">
-          ⟳ Sync all
+        <button className="flex items-center gap-2 rounded-full border border-line bg-card px-4 py-2 text-sm font-medium text-ink">
+          <RefreshCw size={15} /> Sync all
         </button>
       </div>
 

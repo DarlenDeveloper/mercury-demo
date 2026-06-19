@@ -1,4 +1,5 @@
 import { Avatar, Badge, Card, CardHead } from "@/components/ui";
+import { DollarSign } from "lucide-react";
 import {
   OVERTIME_MULTIPLIER,
   currency,
@@ -62,7 +63,7 @@ export default function PayoutsPage() {
       </div>
 
       <Card>
-        <CardHead title="Disbursement Queue" icon={<span>＄</span>} />
+        <CardHead title="Disbursement Queue" icon={<DollarSign size={15} />} />
         <div className="overflow-x-auto px-2 pb-2 pt-3">
           <table className="w-full">
             <thead>
